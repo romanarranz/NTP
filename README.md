@@ -19,7 +19,7 @@ para asignación de grupos de prácticas en varias asignaturas.
 > - Se ha incluido JUnit para realizar pruebas de evaluación de la aplicación. JUnit fue descargado a través de Maven.
 
 
-Glosario de Seminarios
+Índice de Seminarios
 -------------
 #### Seminario 1: Primera toma de contacto con programación funcional
 En este serminario se trataron diferentes ejemplos de como trabajar usando flujos y expresiones lambda usando el enfoque de programación funcional.
