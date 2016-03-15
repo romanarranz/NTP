@@ -5,7 +5,7 @@ Prácticas y seminarios de la asignatura Nuevas Tecnologías de la Programación
 
 ----------
 
-Glosario de Prácticas
+Índice de Prácticas
 -------------
 #### Práctica 1: Programación Funcional
 En esta práctica implementaremos desde un punto de vista de la programación funcional un sistema de gestión de alumnos
