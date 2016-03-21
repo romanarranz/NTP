@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.TreeMap;
+import java.util.Optional;
 
 /**
  * Created by roman on 11/3/16.
@@ -30,14 +30,13 @@ public class Listado {
         if(f.exists() && !f.isDirectory()) {
             lista = new HashMap<>();
 
-            // Se define un patron que representa ,
-            Pattern pattern = Pattern.compile("(,)");
-
             // obtenemos las lineas del archivo
             Stream<String> lineas = Files.lines(Paths.get(rutaArchivo), StandardCharsets.ISO_8859_1);
 
             // creamos los alumnos por cada linea
             lineas.forEach( linea -> crearAlumno(linea));
+
+            lineas.close();
         }
         else {
             System.out.println("El archivo "+rutaArchivo+" no existe");
@@ -45,7 +44,36 @@ public class Listado {
     }
 
     public void cargarArchivoAsignacion(String rutaArchivo) throws IOException {
+        // obtenemos las lineas del archivo
+        Stream<String> lineas = Files.lines(Paths.get(rutaArchivo), StandardCharsets.ISO_8859_1);
 
+        // flujo para obtener UNICAMENTE el codigo de la asignatura
+        Stream<String> lineaAsignatura = Files.lines(Paths.get(rutaArchivo), StandardCharsets.ISO_8859_1);
+
+        // a partir del flujo de lineas me quito las lineas vacias y las que sean del codigo de asignatura y me salto 1 byte
+        // de una linea que recogia y no valia de nada
+        Stream<String> lineasAlumnoGrupo = lineas
+                .filter(linea -> !(linea.contains("ES") || linea.contains("LMD") || linea.contains("MP") || linea.contains("TOC")))
+                .filter(linea -> !linea.isEmpty())
+                .skip(1);
+
+        // recupero el codigo de asignatura, usando findfirst el flujo lineaAsignatura queda cerrado porque es una sentencia terminal
+        Optional<String> asignatura = lineaAsignatura
+                .filter(linea -> linea.contains("ES") || linea.contains("LMD") || linea.contains("MP") || linea.contains("TOC"))
+                .findFirst();
+
+        // se define el patron para los espacios en blanco que sirven como separador
+        Pattern pattern = Pattern.compile("\\s");
+
+        // obtengo el listado de dni, grupo
+        lineasAlumnoGrupo.forEach(linea -> {
+            List<String> infos = pattern.splitAsStream(linea).collect(Collectors.toList());
+
+            // del alumno con dni infos.get(0) le añadimos la nueva asignacion
+            lista.get(infos.get(0)).setAsignacion(asignatura, Integer.parseInt(infos.get(1)));
+        });
+
+        lineasAlumnoGrupo.close();
     }
 
     private void crearAlumno(String linea){
@@ -64,28 +92,64 @@ public class Listado {
                         infos.get(3)
                 )
         );
-
-        System.out.println(infos.toString());
     }
 
-    // recibe como argumento el codigo de una asignatura (uno de los posibles valores del enumerado) y devuelve los contadores de alumnos asignados a cada grupo.
+    // recibe como argumento el codigo de una asignatura y devuelve los contadores de alumnos asignados a cada grupo.
     public Map<Integer,Long> obtenerContadoresGruposDeAsignatura(Asignatura asignatura){
-        return null;
+        Map<Integer, Long> contadores = new HashMap<>();
+
+        Long noAparecen = lista.entrySet()
+                .stream()
+                .filter(entrada -> !entrada.getValue().cursarAsignatura(asignatura.toString()))
+                .count();
+        contadores.put(-1,noAparecen);
+
+        Long grupo1 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 1))
+                .count();
+        contadores.put(1,grupo1);
+
+        Long grupo2 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 2))
+                .count();
+        contadores.put(2,grupo2);
+
+        Long grupo3 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 3))
+                .count();
+        contadores.put(3,grupo3);
+
+        return contadores;
     }
 
-    // obtener los contadores que indiquen el nu ́mero de alumnos asignados a cada grupo, para cada asignatura
+    // obtener los contadores que indiquen el numero de alumnos asignados a cada grupo, para cada asignatura
     public Map<Asignatura, Map<Integer,Long>> obtenerContadoresGrupos(){
-        // llamada a obtenerContadoresGruposDeAsignaturas
-        return null;
+        Map<Asignatura, Map<Integer,Long>> contadoresGrupos = new HashMap<>();
+
+        contadoresGrupos.put(Asignatura.LMD,obtenerContadoresGruposDeAsignatura(Asignatura.LMD));
+        contadoresGrupos.put(Asignatura.ES,obtenerContadoresGruposDeAsignatura(Asignatura.ES));
+        contadoresGrupos.put(Asignatura.MP,obtenerContadoresGruposDeAsignatura(Asignatura.MP));
+        contadoresGrupos.put(Asignatura.TOC,obtenerContadoresGruposDeAsignatura(Asignatura.TOC));
+
+        return contadoresGrupos;
     }
 
     // la clase permitira tambien obtener un listado de todos los alumnos que no estan asignados a una asignatura concreta,
     // cuyo nombre se pasara como argumento.
     public List<Alumno> buscarAlumnosNoAsignados(String asignatura){
-        return null;
+        List<Alumno> alumnos = lista.entrySet()
+                .stream()
+                .filter( e -> !e.getValue().cursarAsignatura(asignatura))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toList());
+
+        return alumnos;
     }
 
     public int obtenerLongitud(){
-        return 100;
+        return lista.size();
     }
 }
