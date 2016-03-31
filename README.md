@@ -18,7 +18,7 @@ para asignación de grupos de prácticas en varias asignaturas.
 > - El enfoque de programación funcional está arraigado principalmente en Java y Scala.
 > - Se ha incluido JUnit para realizar pruebas de evaluación de la aplicación. JUnit fue descargado a través de Maven.
 
-###Práctica 2: Programación con Scala
+####Práctica 2: Programación con Scala
 En esta práctica se pide desarrollar una serie de implementaciones recursivas usando el lenguaje de programación **Scala**.
 Las implementaciones son las siguientes:
 - Triángulo de Pascal
