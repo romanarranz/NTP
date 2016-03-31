@@ -31,7 +31,9 @@ object Main {
     println("................... Comprobar Balance ...................")
     //println(chequearBalance("(if (zero? x) max (/ 1 x))".toList))
     println(chequearBalance("(if (a ¿ b) (b/a) else (a/(b*b)))".toList))
-    println(chequearBalance("(if (a ¿ b) (b/a) else (a/(b*b)))".toList))
+
+    println("................... Contar cambios posibles ...................")
+    println(contarCambiosPosibles(300,List(500,5,50,100,20,200,10)))
   }
 
   /**
@@ -89,6 +91,11 @@ object Main {
     * @return contador de numero de vueltas posibles
     */
   def contarCambiosPosibles(cantidad: Int, monedas: List[Int]): Int = {
-     0
+     if(cantidad == 0)
+       1
+     else if(cantidad < 0 || monedas.length == 0)
+       0
+     else
+       contarCambiosPosibles(cantidad - monedas.head, monedas) + contarCambiosPosibles(cantidad, monedas.tail);
   }
 }
