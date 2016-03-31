@@ -27,6 +27,11 @@ object Main {
     // Se muestra el valor que debe ocupar la columna 5 en la fila 10
     println(calcularValorTrianguloPascal(10, 15))
     println(calcularValorTrianguloPascal(0, 0))
+
+    println("................... Comprobar Balance ...................")
+    //println(chequearBalance("(if (zero? x) max (/ 1 x))".toList))
+    println(chequearBalance("(if (a ¿ b) (b/a) else (a/(b*b)))".toList))
+    println(chequearBalance("(if (a ¿ b) (b/a) else (a/(b*b)))".toList))
   }
 
   /**
@@ -37,7 +42,12 @@ object Main {
     * @return
     */
   def calcularValorTrianguloPascal(columna: Int, fila: Int): Int = {
-     // A rellenar
+     // caso base
+     if(columna == 0 || columna == fila)
+       1
+     // caso recursivo, cogiendo la suma de los valores que tiene encima del elemento interno
+     else
+       calcularValorTrianguloPascal(columna-1, fila-1) + calcularValorTrianguloPascal(columna,fila-1)
   }
 
   /**
@@ -47,7 +57,27 @@ object Main {
     * @return valor booleano con el resultado de la operacion
     */
   def chequearBalance(cadena: List[Char]): Boolean = {
-     // A rellenar
+    println(cadena)
+     // caso base
+     if(cadena.isEmpty)
+       true
+     else if(cadena.head == '(' && cadena.last == ')')
+     {
+         val miCadena = cadena.tail
+         chequearBalance(miCadena.dropRight(1))
+     }
+     else if(cadena.head == ')' && cadena.last == '(')
+     {
+       val miCadena = cadena.tail
+       chequearBalance(miCadena.dropRight(1))
+     }
+     else if( (cadena.head != '(') && (cadena.last == ')' || cadena.last == '(') )
+         chequearBalance(cadena.tail)
+     else
+     {
+         val miCadena = cadena.tail
+         chequearBalance(miCadena.dropRight(1))
+     }
   }
 
   /**
@@ -59,6 +89,6 @@ object Main {
     * @return contador de numero de vueltas posibles
     */
   def contarCambiosPosibles(cantidad: Int, monedas: List[Int]): Int = {
-     // A rellenar
+     0
   }
 }
