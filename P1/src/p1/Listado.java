@@ -3,6 +3,7 @@ package p1;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
 import java.io.File;
 import java.util.regex.Pattern;
 import java.nio.file.Files;
@@ -22,6 +23,7 @@ public class Listado {
      * <dni - alumno>
      */
     private Map<String, Alumno> lista;
+    private ArrayList<String> asignaturas;
 
     public Listado(String rutaArchivo) throws IOException{
 
@@ -29,6 +31,10 @@ public class Listado {
         File f = new File(rutaArchivo);
         if(f.exists() && !f.isDirectory()) {
             lista = new HashMap<>();
+            asignaturas = new ArrayList<>();
+
+            for(Asignatura asig : Asignatura.values())
+                asignaturas.add(asig.toString());
 
             // obtenemos las lineas del archivo
             Stream<String> lineas = Files.lines(Paths.get(rutaArchivo), StandardCharsets.ISO_8859_1);
@@ -53,13 +59,13 @@ public class Listado {
         // a partir del flujo de lineas me quito las lineas vacias y las que sean del codigo de asignatura y me salto 1 byte
         // de una linea que recogia y no valia de nada
         Stream<String> lineasAlumnoGrupo = lineas
-                .filter(linea -> !(linea.contains("ES") || linea.contains("LMD") || linea.contains("MP") || linea.contains("TOC")))
+                .filter(linea -> !(asignaturas.contains(linea)))
                 .filter(linea -> !linea.isEmpty())
                 .skip(1);
 
         // recupero el codigo de asignatura, usando findfirst el flujo lineaAsignatura queda cerrado porque es una sentencia terminal
         Optional<String> asignatura = lineaAsignatura
-                .filter(linea -> linea.contains("ES") || linea.contains("LMD") || linea.contains("MP") || linea.contains("TOC"))
+                .filter(linea -> asignaturas.contains(linea))
                 .findFirst();
 
         // se define el patron para los espacios en blanco que sirven como separador
@@ -129,10 +135,8 @@ public class Listado {
     public Map<Asignatura, Map<Integer,Long>> obtenerContadoresGrupos(){
         Map<Asignatura, Map<Integer,Long>> contadoresGrupos = new HashMap<>();
 
-        contadoresGrupos.put(Asignatura.LMD,obtenerContadoresGruposDeAsignatura(Asignatura.LMD));
-        contadoresGrupos.put(Asignatura.ES,obtenerContadoresGruposDeAsignatura(Asignatura.ES));
-        contadoresGrupos.put(Asignatura.MP,obtenerContadoresGruposDeAsignatura(Asignatura.MP));
-        contadoresGrupos.put(Asignatura.TOC,obtenerContadoresGruposDeAsignatura(Asignatura.TOC));
+        for(Asignatura asig : Asignatura.values())
+            contadoresGrupos.put(asig, obtenerContadoresGruposDeAsignatura(asig));
 
         return contadoresGrupos;
     }
