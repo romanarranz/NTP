@@ -36,6 +36,7 @@ public class Listado {
             for(Asignatura asig : Asignatura.values())
                 asignaturas.add(asig.toString());
 
+
             // obtenemos las lineas del archivo
             Stream<String> lineas = Files.lines(Paths.get(rutaArchivo), StandardCharsets.ISO_8859_1);
 
@@ -110,15 +111,23 @@ public class Listado {
                 .count();
         contadores.put(-1,noAparecen);
 
-        Long contador;
-        for(int i = 1; i<4; i++){
-            final int grupo = i;
-        	contador = lista.entrySet()
-        		.stream()
-        		.filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), grupo))
-        		.count();
-        	contadores.put(grupo, contador);
-        }
+        Long grupo1 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 1))
+                .count();
+        contadores.put(1,grupo1);
+
+        Long grupo2 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 2))
+                .count();
+        contadores.put(2,grupo2);
+
+        Long grupo3 = lista.entrySet()
+                .stream()
+                .filter(entrada -> entrada.getValue().cursaAsignaturaGrupo(asignatura.toString(), 3))
+                .count();
+        contadores.put(3,grupo3);
 
         return contadores;
     }
@@ -127,8 +136,8 @@ public class Listado {
     public Map<Asignatura, Map<Integer,Long>> obtenerContadoresGrupos(){
         Map<Asignatura, Map<Integer,Long>> contadoresGrupos = new HashMap<>();
 
-        Stream.of(Asignatura.values())
-                .forEach(asig -> contadoresGrupos.put(asig, obtenerContadoresGruposDeAsignatura(asig)));
+        for(Asignatura asig : Asignatura.values())
+            contadoresGrupos.put(asig, obtenerContadoresGruposDeAsignatura(asig));
 
         return contadoresGrupos;
     }
@@ -147,10 +156,5 @@ public class Listado {
 
     public int obtenerLongitud(){
         return lista.size();
-    }
-
-    @Override
-    public String toString(){
-        return lista.toString();
     }
 }
