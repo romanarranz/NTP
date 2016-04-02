@@ -31,9 +31,11 @@ object Main {
     println("................... Comprobar Balance ...................")
     //println(chequearBalance("(if (zero? x) max (/ 1 x))".toList))
     println(chequearBalance("(if (a ¿ b) (b/a) else (a/(b*b)))".toList))
+    println(chequearBalance(":-)".toList))
 
     println("................... Contar cambios posibles ...................")
     println(contarCambiosPosibles(300,List(500,5,50,100,20,200,10)))
+    println(contarCambiosPosibles(10,List(1,2,5)))
   }
 
   /**
@@ -63,23 +65,16 @@ object Main {
      // caso base
      if(cadena.isEmpty)
        true
-     else if(cadena.head == '(' && cadena.last == ')')
-     {
-         val miCadena = cadena.tail
-         chequearBalance(miCadena.dropRight(1))
-     }
-     else if(cadena.head == ')' && cadena.last == '(')
-     {
-       val miCadena = cadena.tail
-       chequearBalance(miCadena.dropRight(1))
-     }
-     else if( (cadena.head != '(') && (cadena.last == ')' || cadena.last == '(') )
-         chequearBalance(cadena.tail)
-     else
-     {
-         val miCadena = cadena.tail
-         chequearBalance(miCadena.dropRight(1))
-     }
+     else if(cadena.head == '(')
+       true || chequearBalance(cadena.tail)
+     else if(cadena.head == ')')
+       false || chequearBalance(cadena.tail)
+     else if(cadena.head != ')' || cadena.head != '(')
+       false || chequearBalance(cadena.tail)
+     else if(cadena.last == ')')
+       true
+
+     false
   }
 
   /**
