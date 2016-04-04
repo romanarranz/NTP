@@ -38,3 +38,6 @@ En este serminario se trataron diferentes ejemplos de como trabajar usando flujo
 
 #### Seminario 2: Primera toma de contacto con Scala
 En este serminario se trataron diferentes ejemplos de como trabajar usando el lenguaje de programación Scala, el cual tiene arraigado el paradigma de programación funcional y esta fuertemente orientado a este paradigma.
+
+#### Seminario 3: Clases y objetos con Scala
+En este seminario se dejan varios ejemplos del uso de las clases en Scala, entre ellos podemos destacar el uso de herencia, polimorfismo, clases abstractas y un nuevo concepto como clases anónimas (idea similar a las factorias).
