@@ -60,21 +60,31 @@ object Main {
     * @param cadena cadena a analizar
     * @return valor booleano con el resultado de la operacion
     */
-  def chequearBalance(cadena: List[Char]): Boolean = {
-    println(cadena)
-     // caso base
-     if(cadena.isEmpty)
-       true
-     else if(cadena.head == '(')
-       true || chequearBalance(cadena.tail)
-     else if(cadena.head == ')')
-       false || chequearBalance(cadena.tail)
-     else if(cadena.head != ')' || cadena.head != '(')
-       false || chequearBalance(cadena.tail)
-     else if(cadena.last == ')')
-       true
 
-     false
+  def balance(cadena: List[Char]): Int = {
+    if(!cadena.isEmpty) {
+      if (cadena.last == '(')
+        -1
+      else if (cadena.head == '(')
+        1 + balance(cadena.tail)
+      else if (cadena.head != ')' && cadena.head != '(')
+        0 + balance(cadena.tail)
+      else if (cadena.head == ')')
+        -1 + balance(cadena.tail)
+      else
+        0
+    }
+    else
+      0
+  }
+
+  def chequearBalance(cadena: List[Char]): Boolean = {
+     val resultado = balance(cadena)
+
+     if(cadena.isEmpty || resultado == 0)
+       true
+     else
+       false
   }
 
   /**
