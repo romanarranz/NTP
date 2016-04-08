@@ -87,6 +87,27 @@ object Main {
        false
   }
 
+  /* El expuesto en clase */
+  def chequearBalancev2(cadena : List[Char]): Boolean = {
+
+    def contarParentesis(cadena : List[Char], contador : Int): Int = {
+      if (cadena.isEmpty)
+        contador
+      else {
+        val acumulador = cadena.head.match {
+          case ')' => contador - 1
+          case '(' => contador + 1
+          case _ => contador
+        }
+        if (acumulador < 0)
+          acumulador
+        else
+          contarParentesis(cadena.tail, acumulador)
+      }
+    }
+    contarParentesis(cadena, 0) == 0
+  }
+
   /**
     * Ejercicio 3: funcion para determinar las posibles formas de devolver el
     * cambio de una determinada cantidad con un conjunto de monedas
