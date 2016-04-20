@@ -45,7 +45,7 @@ En este seminario se dejan varios ejemplos del uso de las clases en Scala, entre
 #### Seminario 4: Tipos básicos y Clase Racional
 Ejemplos de los distintos tipos de datos básicos para Scala y una clase Racional en la cual se han implementado los métodos básicos de operaciones y sobrecarga de operadores.
 
-#### Seminario 4: Estructuras de Control
+#### Seminario 5: Estructuras de Control
 Se dejan distintos ejemplos básicos sobre las estructuras de control en Scala y como podemos realizar una traducción de estructuras de control de Java a código de Scala usando los paradigmas de programación funcional.
 
 De forma complementaria se ofrece la resolución del clásico problema de las ocho reinas.
