@@ -79,13 +79,13 @@ object ConjuntoFuncional {
     // Funcion auxiliar para iterar sobre los valores desde
     // -LIMITE a LIMITE
     def iter(elemento: Int): Boolean = {
-      // Si se encuentra en el LIMITE
-      if (elemento > -LIMITE && elemento < LIMITE) true
-      else if (contiene(conjunto, elemento) && p(elemento)) ???
-      else iter(???)
+      // si elemento hubiera superado el LIMITE quiere decir que se han recorrido todos los elementos del conjunto y que cumplen la condicion del predicado p
+      if (elemento > LIMITE) true
+      else if (!conjunto(elemento)) iter(elemento+1)  // si el elemento no perteneciera al conjunto mirariamos el siguiente
+      else iter(elemento + 1) && p(elemento)
     }
 
-    iter(???)
+    iter(-LIMITE)
   }
 
   /**
@@ -95,7 +95,7 @@ object ConjuntoFuncional {
     * @param p
     * @return
     */
-  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean =
+  def existe(conjunto: Conjunto, p: Int => Boolean): Boolean = !paraTodo(conjunto, x => !p(x))
 
   /**
     * Genera un nuevo conjunto transformando los elementos del
