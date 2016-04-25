@@ -1,7 +1,7 @@
 def elevarCuadrado(x : Int): Int = x*x
 
 def sumarCuadrados(desde : Int, hasta : Int) : Int = {
-    if (elevarCuadrado(desde) > elevarCuadrado(hasta))
+    if (desde > hasta)
         0
     else
         elevarCuadrado(desde) + sumarCuadrados(desde+1, hasta)
