@@ -96,7 +96,7 @@ object ConjuntoFuncional {
     * @return
     */
     // ejemplo para el conjunto de numeros naturales {1, 2, 3, 4...} veamos si se cumple el predicado x > 0 que realmente es asi
-    // !(x>0) = x<=0 veamos si se cumple para todo el conjunto que exista alguno con esta condicion.
+    // !(x>0) = x<=0 veamos si se cumple para todo el conjunto, que exista alguno con esta condicion.
     // como nos devuelve false, negandolo obtenemos true ya que en este conjunto no hay ninguno que cumpla esa condicion
   def existe(conjunto: Conjunto, p: Int => Boolean): Boolean = !paraTodo(conjunto, x => !p(x))
 
@@ -108,7 +108,7 @@ object ConjuntoFuncional {
     * @param funcion
     * @return
     */
-  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = (x:Int) => paraTodo(conjunto, y => funcion(y) == x )
+  def map(conjunto: Conjunto, funcion: Int => Int): Conjunto = (x:Int) => existe(conjunto, y => funcion(y) == x )
 
   /**
     * Crea una cadena con el contenido completo del conjunto
