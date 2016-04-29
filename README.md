@@ -7,7 +7,7 @@ Prácticas y seminarios de la asignatura Nuevas Tecnologías de la Programación
 
 Índice de Prácticas
 -------------
-####Práctica 1: Programación Funcional
+#### Práctica 1: Programación Funcional
 En esta práctica implementaremos desde un punto de vista de la programación funcional un sistema de gestión de alumnos
 para asignación de grupos de prácticas en varias asignaturas.
 
@@ -18,7 +18,7 @@ para asignación de grupos de prácticas en varias asignaturas.
 > - El enfoque de programación funcional está arraigado principalmente en Java y Scala.
 > - Se ha incluido JUnit para realizar pruebas de evaluación de la aplicación. JUnit fue descargado a través de Maven.
 
-####Práctica 2: Programación con Scala
+#### Práctica 2: Programación con Scala
 En esta práctica se pide desarrollar una serie de implementaciones recursivas usando el lenguaje de programación **Scala**.
 Las implementaciones son las siguientes:
 - Triángulo de Pascal
@@ -26,10 +26,22 @@ Las implementaciones son las siguientes:
 - Contador de posibles cambios de moneda
 
 > **Consideraciones:**
+> 
 > - Se ha desarrollado usando el lenguaje de programación Scala
 > - El IDE utilizado es Intellij IDEA 15. Aunque también se podría haber desarrollado con cualquier editor de texto.
 > - Sigue el enfoque de progamación funcional.
-> - Se ha incluido la librería *scalatest* para comprobar los resultados de los test unitarios de cada uno de los problemas. 
+> - Se ha incluido la librería `scalatest` para comprobar los resultados de los test unitarios de cada uno de los problemas.
+
+#### Práctica 3: Programación con Scala, funciones
+En esta práctica se pide desarrollar una serie de implementaciones de métodos de un objeto `Conjunto` basadas en la noción matemática de funciones características, el objetivo de esta práctica es implementar funciones de alto orden.
+
+> **Consideraciones**
+> 
+> - Se ha desarrollado usando el lenguaje de programación Scala
+> - El IDE utilizado es Intellij IDEA 16.1 Community Edition. Aunque también se podría haber desarrollado con cualquier editor de texto.
+> - Se ha incluido la librería `scalatest` para comprobar los resultados de los test unitarios de cada uno de los problemas así como `JUnit`.
+> - Como requisito se pedia que la mayoria de funciones se implementasen en una línea.
+> - Predomina el uso de predicados.
 
 Índice de Seminarios
 -------------
