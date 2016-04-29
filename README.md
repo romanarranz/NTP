@@ -50,6 +50,8 @@ Se dejan distintos ejemplos básicos sobre las estructuras de control en Scala y
 
 De forma complementaria se ofrece la resolución del clásico problema de las ocho reinas.
 
+#### Seminario 6: Funciones y cierres
+Se dejan distintos ejemplos básicos sobre el uso de las funciones en Scala, entre los ejemplos podemos encontrar como definir funciones haciendo uso de los placeholders `-` asi como ejemplos para definir funciones de primer orden a las cuales se les puede pasar como parámetro otra función, lo que se denomina `callbacks`.
 
 ## Licencia
 
