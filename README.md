@@ -43,6 +43,15 @@ En esta práctica se pide desarrollar una serie de implementaciones de métodos 
 > - Como requisito se pedia que la mayoria de funciones se implementasen en una línea.
 > - Predomina el uso de predicados.
 
+#### Práctica 4: Programación con Scala, objetos
+En esta práctica trabajaremos con clases de Scala y clases derivadas de estas. Tendremos colecciones de objetos (exactamente de **tweets**) sobre los cuales tendremos que aplicar una serie de métodos para filtrar, unir, intersecar y ordenar según una línea de tendencia de etiquetado los twits de estas colecciones.
+
+> **Consideraciones**
+> 
+> - Se ha desarrollado usando el lenguaje de programación Scala
+> - El IDE utilizado es Intellij IDEA 16.1 Community Edition. Aunque también se podría haber desarrollado con cualquier editor de texto.
+
+
 Índice de Seminarios
 -------------
 #### Seminario 1: Primera toma de contacto con programación funcional
