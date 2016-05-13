@@ -13,11 +13,12 @@ object TerminosGoogleApple {
 
   // Conjuntos de tweets para ambas listas de terminos
   // ------------------------ A IMPLEMENTAR -------------------------
-  val mensajesGoogle: ConjuntoTweet = ??? 
-  val mensajesApple: ConjuntoTweet = ???
+
+  val mensajesGoogle: ConjuntoTweet = LectorTweets.obtenerConjuntoConTerminos(google)
+  val mensajesApple: ConjuntoTweet = LectorTweets.obtenerConjuntoConTerminos(apple)
 
   // Se genera la lista completa de mensajes de ambos temas
-  val tendencia: Tendencia = ??? 
+  val tendencia: Tendencia = mensajesGoogle.union(mensajesApple).ordenacionAscendentePorRetweet
 }
 
 /**
@@ -25,11 +26,19 @@ object TerminosGoogleApple {
   */
 object Main extends App {
   // ------------------------ A IMPLEMENTAR -------------------------
-  // A obtener informacion sobre: 
+  // A obtener informacion sobre:
   // 1. numero de mensajes en mensajesGoogle y mensajesApple
+  println("Numero de mensajes en mensajesGoogle: "+0)
+  println("Numero de mensajes en mensajesApple: "+0)
+
   // 2. numero de mensajes en la tendencia
+
   // 3. numero de mensajes comunes
+
   // 4. orden de influencia de los mensajes comunes
+
   // 5. maximo y minimo numero de retweets en los mensajes comunes
+
   // 6. maximo y minimo de retweets en toda la coleccion de tendencia
+
 }

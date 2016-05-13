@@ -51,5 +51,5 @@ abstract class Tendencia {
     *Longitud de la tendencia
     * @return
     */
-  def length : Integer =  ???
+  def length : Integer
 }

@@ -3,10 +3,7 @@
   */
 class TendenciaVacia extends Tendencia {
 
-// ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui (length)
-  // -------------------------------------------------------------
+  def length : Integer = 0
 
   // ---------------------- YA IMPLEMENTADOS ----------------------
   /**

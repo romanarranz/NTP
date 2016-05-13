@@ -150,7 +150,7 @@ object LectorTweets {
     * Se almacenan aqui todos los mensajes, en forma de conjunto
     */
   val mensajes: ConjuntoTweet = unionOfAllTweetSets(conjuntosTweets, new ConjuntoTweetVacio)
-
-  // ------------------- A IMPLEMENTAR ----------------------------------
-  def obtenerConjuntoConTerminos(terminos : List[String]) : ConjuntoTweet = ???
+  def obtenerConjuntoConTerminos(terminos : List[String]) : ConjuntoTweet = {
+    this.mensajes.filtrar( tweet => tweet.texto.contains(terminos))
+  }
 }

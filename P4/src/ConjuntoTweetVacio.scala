@@ -7,6 +7,9 @@ class ConjuntoTweetVacio extends ConjuntoTweet {
   // quizas algunos de los metodos pedidos se dejen como abstractos y
   // haya que ofrecer las implementaciones aqui
   // -------------------------------------------------------------
+  def union(otro: ConjuntoTweet): ConjuntoTweet = otro
+
+  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = this
 
   // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
   // -------------------------------------------------------------------------

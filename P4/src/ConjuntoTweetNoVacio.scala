@@ -8,10 +8,31 @@
 class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet,
                            derecha: ConjuntoTweet) extends ConjuntoTweet {
 
-  // ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui
-  // -------------------------------------------------------------
+  def filtrar0(predicado : Tweet => Boolean, conjuntoActual : ConjuntoTweet): ConjuntoTweet = {
+
+    // conjuntoNuevo será el conjuntoActual + la raiz (si se cumple la condicion)
+    val conjuntoNuevo =
+      if(predicado(raiz) && !conjuntoActual.contiene(raiz)) conjuntoActual.incluir(raiz)
+      else conjuntoActual
+
+    derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo))
+  }
+
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, this)
+
+  def union(otro: ConjuntoTweet): ConjuntoTweet = {
+    if(otro.estaVacio) this
+    else {
+      if(this.contiene(otro.head)){
+        val nuevo = incluir(this.head)
+        this.union(otro.tail)
+      }
+      else
+        this.union(otro.tail)
+    }
+  }
+
+  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = ???
 
   // METODOS YA IMPLEMENTADOS: no cambiar
   // -------------------------------------------------------------------------

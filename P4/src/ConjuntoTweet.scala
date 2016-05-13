@@ -4,22 +4,11 @@
   */
 abstract class ConjuntoTweet {
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (haciendo uso del auxiliar)
-  // -------------------------------------------------------------
-  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = ???
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet
 
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = ???
-
-  
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def union(otro: ConjuntoTweet): ConjuntoTweet = ???
+  def union(otro: ConjuntoTweet): ConjuntoTweet
 
   // ----------------------- A IMPLEMENTAR -----------------------
   // (o dejar como abstracto para implementar en clases derivadas)

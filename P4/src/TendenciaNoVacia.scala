@@ -6,10 +6,7 @@
   */
 class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendencia {
 
-  // ------------------- A IMPLEMENTAR ----------------------------
-  // quizas algunos de los metodos pedidos se dejen como abstractos y
-  // haya que ofrecer las implementaciones aqui (length)
-  // -------------------------------------------------------------
+  def length : Integer = 1 + resto.length
 
   // ---------------------- YA IMPLEMENTADOS ----------------------
   /**
@@ -18,8 +15,7 @@ class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendenci
     * @param mensaje
     * @return
     */
-  def +(mensaje: Tweet): Tendencia =
-    new TendenciaNoVacia(mensajeInicial, resto + mensaje)
+  def +(mensaje: Tweet): Tendencia = new TendenciaNoVacia(mensajeInicial, resto + mensaje)
 
   /**
     * Devuelve el mensaje inicial
@@ -47,6 +43,5 @@ class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendenci
     *
     * @return
     */
-  override def toString =
-    "TendenciaNoVacia(" + mensajeInicial.retweets + ", " + resto + ")"
+  override def toString = "TendenciaNoVacia(" + mensajeInicial.retweets + ", " + resto + ")"
 }
