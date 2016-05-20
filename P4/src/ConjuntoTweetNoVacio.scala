@@ -5,8 +5,7 @@
   * @param izquierda conjunto a la izquierda
   * @param derecha   conjunto a la derecha
   */
-class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet,
-                           derecha: ConjuntoTweet) extends ConjuntoTweet {
+class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: ConjuntoTweet) extends ConjuntoTweet {
 
   def filtrar0(predicado : Tweet => Boolean, conjuntoActual : ConjuntoTweet): ConjuntoTweet = {
 
@@ -18,21 +17,22 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet,
     derecha.filtrar0(predicado, izquierda.filtrar0(predicado, conjuntoNuevo))
   }
 
-  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, this)
-
   def union(otro: ConjuntoTweet): ConjuntoTweet = {
     if(otro.estaVacio) this
     else {
-      if(this.contiene(otro.head)){
+      if(!contiene(otro.head)){
         val nuevo = incluir(this.head)
-        this.union(otro.tail)
+        nuevo.union(otro.tail)
       }
       else
-        this.union(otro.tail)
+        union(otro.tail)
     }
   }
 
-  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = ???
+  // conjunto con los tweets que estan en un conjunto y en el otro
+  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = filtrar(tweet => otro.contiene(tweet))
+
+  def numeroMensajes: Integer = 1 + izquierda.numeroMensajes + derecha.numeroMensajes
 
   // METODOS YA IMPLEMENTADOS: no cambiar
   // -------------------------------------------------------------------------

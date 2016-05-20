@@ -7,9 +7,13 @@ class ConjuntoTweetVacio extends ConjuntoTweet {
   // quizas algunos de los metodos pedidos se dejen como abstractos y
   // haya que ofrecer las implementaciones aqui
   // -------------------------------------------------------------
+  def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet = conjunto
+
   def union(otro: ConjuntoTweet): ConjuntoTweet = otro
 
   def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = this
+
+  def numeroMensajes: Integer = 0
 
   // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
   // -------------------------------------------------------------------------

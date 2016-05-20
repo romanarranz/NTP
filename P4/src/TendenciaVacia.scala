@@ -5,7 +5,8 @@ class TendenciaVacia extends Tendencia {
 
   def length : Integer = 0
 
-  // ---------------------- YA IMPLEMENTADOS ----------------------
+  // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
+  // -------------------------------------------------------------------------
   /**
     * Agrega nuevo mensaje
     *

@@ -8,7 +8,8 @@ class TendenciaNoVacia(mensajeInicial: Tweet, resto: Tendencia) extends Tendenci
 
   def length : Integer = 1 + resto.length
 
-  // ---------------------- YA IMPLEMENTADOS ----------------------
+  // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
+  // -------------------------------------------------------------------------
   /**
     * Se agrega mensaje al final de la secuencia
     *

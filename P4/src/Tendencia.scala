@@ -2,6 +2,17 @@
   * Clase para proporcionar una secuencia lineal de mensajes
   */
 abstract class Tendencia {
+  // -------------------------- A IMPLEMENTAR --------------------
+  // (o dejar como abstracto)
+  // -------------------------------------------------------------
+  /**
+    *Longitud de la tendencia
+    * @return
+    */
+  def length : Integer
+
+  // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR
+  // -------------------------------------------------------------------------
   /**
     * Sobrecarga del operador +
     *
@@ -43,13 +54,4 @@ abstract class Tendencia {
       this.tail.foreach(funcion)
     }
   }
-
-  // -------------------------- A IMPLEMENTAR --------------------
-  // (o dejar como abstracto)
-  // -------------------------------------------------------------
-  /**
-    *Longitud de la tendencia
-    * @return
-    */
-  def length : Integer
 }

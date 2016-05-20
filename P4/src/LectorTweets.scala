@@ -1,4 +1,3 @@
-
 /**
   * Lector de tweets
   */
@@ -13,7 +12,7 @@ object LectorTweets {
     /**
       * Obtiene una lista del tipo indicado a partir del analisis de un
       * texto
- *
+      *
       * @param texto texto a analizar
       * @tparam T tipo asociado a la lista
       * @return
@@ -34,7 +33,7 @@ object LectorTweets {
     /**
       * Obtiene los mensajes de un determinado usuario a partir del analisis
       * de una cadena de texto con la informacion
- *
+      *
       * @param usuario
       * @param texto
       * @return
@@ -60,18 +59,18 @@ object LectorTweets {
 
   /**
     * Se crea un conjunto de mensajes a partir de una lista
- *
+    *
     * @param lista
     * @return
     */
-  def toTweetSet(lista: List[Tweet]): ConjuntoTweet = {
-    //lista.foldLeft(new ConjuntoTweetVacio: ConjuntoTweet)(_.incluir(_))
-    lista.foldLeft(new ConjuntoTweetVacio : ConjuntoTweet)((conjunto:ConjuntoTweet, tweet:Tweet) => conjunto.incluir(tweet))
-  }
+  def toTweetSet(lista: List[Tweet]): ConjuntoTweet =
+  //lista.foldLeft(new ConjuntoTweetVacio: ConjuntoTweet)(_.incluir(_))
+    lista.foldLeft(new ConjuntoTweetVacio: ConjuntoTweet)((conjunto: ConjuntoTweet, tweet: Tweet) =>
+      conjunto.incluir(tweet))
 
   /**
     * Genera una cadena a partir de los objetos de la clase Tweet
- *
+    *
     * @param mensajes
     * @return
     */
@@ -79,8 +78,8 @@ object LectorTweets {
     val buf = new StringBuffer
     for (mensaje <- mensajes) {
       val json = "{ \"user\": \"" + mensaje.usuario + "\", \"text\": \"" +
-                                    mensaje.texto.replaceAll(""""""", "\\\\\\\"") + "\", \"retweets\": " +
-                                    mensaje.retweets + ".0 }"
+        mensaje.texto.replaceAll(""""""", "\\\\\\\"") + "\", \"retweets\": " +
+        mensaje.retweets + ".0 }"
       buf.append(json + ",\n")
     }
     buf.toString
@@ -106,19 +105,19 @@ object LectorTweets {
     * Se genera una lista (de listas) con todos los mensajes disponibles, de todos los usuarios
     */
   private val fuentesTweets = List(gizmodoTweets, techCrunchTweets, engadgetTweets, amazondealsTweets,
-                            cnetTweets, gadgetlabTweets, mashableTweets)
+    cnetTweets, gadgetlabTweets, mashableTweets)
 
   /**
     * Se crea un diccionario asociando usuarios y lista de mensajes correspondientes
     */
   val diccionarioTweets: Map[String, List[Tweet]] =
-    Map() ++ Seq((usuarios(0) -> gizmodoTweets),
-      (usuarios(1) -> techCrunchTweets),
-      (usuarios(2) -> engadgetTweets),
-      (usuarios(3) -> amazondealsTweets),
-      (usuarios(4) -> cnetTweets),
-      (usuarios(5) -> gadgetlabTweets),
-      (usuarios(6) -> mashableTweets))
+    Map() ++ Seq(usuarios(0) -> gizmodoTweets,
+      usuarios(1) -> techCrunchTweets,
+      usuarios(2) -> engadgetTweets,
+      usuarios(3) -> amazondealsTweets,
+      usuarios(4) -> cnetTweets,
+      usuarios(5) -> gadgetlabTweets,
+      usuarios(6) -> mashableTweets)
 
   /**
     * Se crea una lista de conjuntos de tweets, uno para cada usuario
@@ -133,24 +132,24 @@ object LectorTweets {
 
   /**
     * Metodo privado para unir todos los conjuntos de mensajes en uno solo
- *
+    *
     * @param listaConjuntos
     * @param conjuntoActual
     * @return
     */
   private def unionOfAllTweetSets(listaConjuntos: List[ConjuntoTweet], conjuntoActual: ConjuntoTweet): ConjuntoTweet =
-    // Si la lista esta vacia se devuelve el conjunto actual
+  // Si la lista esta vacia se devuelve el conjunto actual
     if (listaConjuntos.isEmpty) conjuntoActual
     // En caso contrario, se llama recursivamente al metodo sobre el resto de la lista y
     // produciendo la union del conjunto actual con el de la cabeza de la lista
     else unionOfAllTweetSets(listaConjuntos.tail, conjuntoActual.union(listaConjuntos.head))
 
-
   /**
     * Se almacenan aqui todos los mensajes, en forma de conjunto
     */
   val mensajes: ConjuntoTweet = unionOfAllTweetSets(conjuntosTweets, new ConjuntoTweetVacio)
-  def obtenerConjuntoConTerminos(terminos : List[String]) : ConjuntoTweet = {
-    this.mensajes.filtrar( tweet => tweet.texto.contains(terminos))
-  }
+
+  def obtenerConjuntoConTerminos(terminos: List[String]) : ConjuntoTweet =
+  // para cada termino, filtra en los mensajes por este
+    mensajes.filtrar(tweet => terminos.exists(termino => tweet.texto.contains(termino)))
 }

@@ -4,27 +4,24 @@
   */
 abstract class ConjuntoTweet {
 
-  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet
-
+  // ----------------------- A IMPLEMENTAR -----------------------
+  // (o dejar como abstracto para implementar en clases derivadas)
+  // -------------------------------------------------------------
+  def filtrar(predicado: Tweet => Boolean): ConjuntoTweet = filtrar0(predicado, new ConjuntoTweetVacio)
   def filtrar0(predicado: Tweet => Boolean, conjunto: ConjuntoTweet): ConjuntoTweet
 
   def union(otro: ConjuntoTweet): ConjuntoTweet
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet = ???
+  def interseccion(otro : ConjuntoTweet) : ConjuntoTweet
 
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def ordenacionAscendentePorRetweet: Tendencia = ??? 
+  def ordenacionAscendentePorRetweet: Tendencia = {
+    // conjunto vacio devuelve tendencia vacia
+    if (estaVacio) new TendenciaVacia
+    // si no, tendencia con el minimo y hace recursividad quitando el minimo
+    else new TendenciaNoVacia(buscarMinimo, eliminar(buscarMinimo).ordenacionAscendentePorRetweet)
+  }
 
-
-  // ----------------------- A IMPLEMENTAR -----------------------
-  // (o dejar como abstracto para implementar en clases derivadas)
-  // -------------------------------------------------------------
-  def numeroMensajes: Integer = ???
+  def numeroMensajes: Integer
 
   // METODOS YA IMPLEMENTADOS QUE NO ES NECESARIO CAMBIAR (desde aqui al final
   // de la descripcion de la clase)

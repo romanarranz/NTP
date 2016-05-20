@@ -19,26 +19,46 @@ object TerminosGoogleApple {
 
   // Se genera la lista completa de mensajes de ambos temas
   val tendencia: Tendencia = mensajesGoogle.union(mensajesApple).ordenacionAscendentePorRetweet
+  val comunes: Tendencia = mensajesGoogle.interseccion(mensajesApple).ordenacionAscendentePorRetweet
 }
 
 /**
   * Clase para probar la funcionalidad
   */
 object Main extends App {
-  // ------------------------ A IMPLEMENTAR -------------------------
-  // A obtener informacion sobre:
-  // 1. numero de mensajes en mensajesGoogle y mensajesApple
-  println("Numero de mensajes en mensajesGoogle: "+0)
-  println("Numero de mensajes en mensajesApple: "+0)
 
-  // 2. numero de mensajes en la tendencia
+  // A obtener informacion sobre
 
-  // 3. numero de mensajes comunes
+  println("1. Numero de mensajes en mensajesGoogle y mensajesApple")
+  println("mensajesGoogle: "+TerminosGoogleApple.mensajesGoogle.numeroMensajes)
+  println("mensajesApple: "+TerminosGoogleApple.mensajesApple.numeroMensajes)
+  print("\n")
 
-  // 4. orden de influencia de los mensajes comunes
+  println("2. Numero de mensajes en la tendencia")
+  println(TerminosGoogleApple.tendencia.length)
+  print("\n")
 
-  // 5. maximo y minimo numero de retweets en los mensajes comunes
+  println("3. Numero de mensajes comunes")
+  println(TerminosGoogleApple.comunes.length+"\n")
 
-  // 6. maximo y minimo de retweets en toda la coleccion de tendencia
+  println("4. Orden de influencia de los mensajes comunes")
+  TerminosGoogleApple.comunes.foreach(tweet => println(tweet))
+  print("\n")
 
+  println("5. Maximo y minimo numero de retweets en los mensajes comunes")
+  def maxRT(t: Tendencia): Integer = {
+    if(!t.isEmpty) {
+      t.head.retweets + maxRT(t.tail)
+    }
+    else
+      0
+  }
+  println("Min: "+TerminosGoogleApple.comunes.head.retweets)
+  println("Max: "+maxRT(TerminosGoogleApple.comunes))
+  print("\n")
+
+  println("6. Maximo y minimo de retweets en toda la coleccion de tendencia")
+  println("Min: "+TerminosGoogleApple.tendencia.head.retweets)
+  println("Max: "+maxRT(TerminosGoogleApple.tendencia))
+  print("\n")
 }
