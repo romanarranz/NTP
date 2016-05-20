@@ -47,12 +47,13 @@ object Main extends App {
 
   println("5. Maximo y minimo numero de retweets en los mensajes comunes")
   def maxRT(t: Tendencia): Integer = {
-    if(!t.isEmpty) {
-      t.head.retweets + maxRT(t.tail)
+    if(t.length>1) {
+      maxRT(t.tail)
     }
     else
-      0
+      t.head.retweets
   }
+
   println("Min: "+TerminosGoogleApple.comunes.head.retweets)
   println("Max: "+maxRT(TerminosGoogleApple.comunes))
   print("\n")
