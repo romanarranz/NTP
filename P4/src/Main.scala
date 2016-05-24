@@ -29,6 +29,9 @@ object Main extends App {
 
   // A obtener informacion sobre
 
+  println("Mensajes en tendencia")
+  println(TerminosGoogleApple.tendencia.length)
+
   println("1. Numero de mensajes en mensajesGoogle y mensajesApple")
   println("mensajesGoogle: "+TerminosGoogleApple.mensajesGoogle.numeroMensajes)
   println("mensajesApple: "+TerminosGoogleApple.mensajesApple.numeroMensajes)

@@ -21,7 +21,7 @@ class ConjuntoTweetNoVacio(raiz: Tweet, izquierda: ConjuntoTweet, derecha: Conju
     if(otro.estaVacio) this
     else {
       if(!contiene(otro.head)){
-        val nuevo = incluir(this.head)
+        val nuevo = incluir(otro.head)
         nuevo.union(otro.tail)
       }
       else
