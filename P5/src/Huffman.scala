@@ -16,6 +16,9 @@ object Huffman {
     case NodoIntermedio(nodoIzda, nodoDcha, _, _) => List.concat(obtenerCaracteres(nodoIzda),obtenerCaracteres(nodoDcha))
   }
 
+  def generarArbol(izq: Nodo, der: Nodo) : Nodo =
+    new NodoIntermedio(izq,der,List.concat(izq.characters,der.characters),izq.cost+der.cost)
+
   def decodificar(arbol : Nodo, bits : List[Int]) : List[Char] = List(' ')
   def codificar(arbol : Nodo, texto : List[Char]) : List[Int] = List(' ')
 

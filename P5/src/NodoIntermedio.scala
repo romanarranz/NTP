@@ -9,5 +9,5 @@ case class NodoIntermedio(val hijoIzda: Nodo, val hijoDcha: Nodo, override val c
     * @return
     */
   override def toString: String =
-    "List: " + characters + ", cost: " + cost + "\n"
+    "characters: " + characters + ", cost: " + cost + "\n"
 }
