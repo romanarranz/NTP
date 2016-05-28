@@ -14,7 +14,7 @@ object Prueba extends App{
   /**
     * Mensaje secreto a decodificar
     */
-  val mensajeSecreto: List[Bit] = List(0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1)
+  val mensajeSecreto: List[Int] = List(0, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1)
 
   /**
     * Se decodifica el mensaje
@@ -24,7 +24,7 @@ object Prueba extends App{
   println(mensajeDecodificado)
 
   // Se intenta lo mismo con la tabla
-  val codificacionTabla=codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
+  val codificacionTabla = codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
 
   // Debe ser igual a mensajeSecreto
   println(mensajeSecreto == codificacionTabla)
