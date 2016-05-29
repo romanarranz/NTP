@@ -37,11 +37,12 @@ object Huffman {
   def convertirArbolTabla(arbolCodificacion : Nodo) : TablaCodigo = null
 
   def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
-    if(!texto.isEmpty){
+    if(texto.length > 0){
       if(obtenerCaracteres(arbol).head == texto.head)
         List(0) ++ codificacionRapida(arbol)(texto.tail)
       else
         List(1) ++ codificacionRapida(arbol)(texto.tail)
     }
+    else null
   }
 }
