@@ -25,8 +25,8 @@ object Main extends App{
 
   println("\n### Nodos Intermedios ###")
   val CD: Nodo = Huffman.generarArbol(C,D)
-  val EF:Nodo = Huffman.generarArbol(E,F)
-  val GH:Nodo = Huffman.generarArbol(G,H)
+  val EF: Nodo = Huffman.generarArbol(E,F)
+  val GH: Nodo = Huffman.generarArbol(G,H)
   print(CD)
   print(EF)
   print(GH)
@@ -37,7 +37,7 @@ object Main extends App{
   val EFGH: Nodo = Huffman.generarArbol(EF,GH)
   print(EFGH)
 
-  val BCDEFGH:Nodo = Huffman.generarArbol(BCD,EFGH)
+  val BCDEFGH: Nodo = Huffman.generarArbol(BCD,EFGH)
   print(BCDEFGH)
 
   println("\n### Nodo raiz ###")

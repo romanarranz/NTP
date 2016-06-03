@@ -118,13 +118,12 @@ object Prueba extends App{
   /**
     * Se decodifica el mensaje
     */
-  //val mensajeDecodificado: List[Char] = decodificar(codigoHuffmanFrances, mensajeSecreto)
-
-  //println(mensajeDecodificado)
+  val mensajeDecodificado: List[Char] = decodificar(codigoHuffmanFrances, mensajeSecreto)
+  println(mensajeDecodificado)
 
   // Se intenta lo mismo con la tabla
-  //val codificacionTabla = codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
+  val codificacionTabla = codificacionRapida(codigoHuffmanFrances)(mensajeDecodificado)
 
   // Debe ser igual a mensajeSecreto
-  //println(mensajeSecreto == codificacionTabla)
+  println(mensajeSecreto == codificacionTabla)
 }

@@ -8,7 +8,7 @@ object generarArbolCodificacion {
 
   def generarListHojasOrdenadas(texto: List[Char]): List[Char] = ???
 
-  def singleton(arbol: Nodo, elemento: Char): Boolean = arbol.characters.contains(elemento)
+  def singleton(arbol: Nodo, elemento: Char): Boolean = arbol.asInstanceOf[NodoIntermedio].characters.contains(elemento)
 
   def combinar(nodosTerminales: List[Nodo]) = {
     // eliminar los nodos con menos peso
