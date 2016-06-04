@@ -24,6 +24,9 @@ object Huffman {
 
   def generarArbol(izq: Nodo, der: Nodo) : Nodo = NodoIntermedio(izq, der, obtenerCaracteres(izq) ++ obtenerCaracteres(der), calcularPeso(izq) + calcularPeso(der))
 
+  /*
+  Decodifica una secuencia de  bits mediante un arbol de codificacion huffman
+   */
   def decodificar(arbol : Nodo, bits : List[Int]): List[Char] = decodificar0(arbol, arbol, bits, List())
   def decodificar0(arbol: Nodo, actual: Nodo, bits: List[Int], result: List[Char]): List[Char] ={
     actual match {
@@ -40,9 +43,37 @@ object Huffman {
     }
   }
 
-  def codificar(arbol : Nodo, texto : List[Char]) : List[Int] = List(' ')
-  def codificarConTabla(tabla : TablaCodigo)(caracter : Char) : List[Int] = List(0)
+  /*
+  Codifica el texto mediante el arbol de codificacion Huffman
+   */
+  def codificar(arbol : Nodo, texto : List[Char]) : List[Int] = codificar0(arbol, arbol, texto, List())
+  def codificar0(arbol: Nodo, actual : Nodo, texto: List[Char], result: List[Int]): List[Int] ={
+    actual match {
+      case NodoHoja(_, _) =>
+        if(texto.isEmpty)
+          List()
+        else
+          codificar0(arbol, arbol, texto.tail, result)
+      case NodoIntermedio(hijoIzda, hijoDcha, _, _) =>
+        if(obtenerCaracteres(hijoIzda).contains(texto.head))
+          List(0) ++ codificar0(arbol, arbol, texto.tail, result)
+        else
+          List(1) ++ codificar0(arbol, hijoDcha, texto, result)
+    }
+  }
 
+  /*
+  Codificacion de un texto a sus correspondientes bits usando una tabla de correspondencias de codigos Huffman
+   */
+  def codificarConTabla(tabla : TablaCodigo)(caracter : Char) : List[Int] = {
+    tabla
+      .filter(tupla => tupla._1 == caracter) // recorremos las tuplas de la tabla y buscamos coincidencias con caracter
+      .head._2 // devolvemos la lista de bits asociada al caracter
+  }
+
+  /*
+  Convierte un arbol a tabla recorriendo los nodos del arbol de codificacion huffman
+   */
   def convertirArbolTabla(arbolCodificacion : Nodo) : TablaCodigo = convertirArbolTabla0(arbolCodificacion, List())
   def convertirArbolTabla0(nodo: Nodo, lista: List[Int]): TablaCodigo = {
     nodo match {
@@ -52,12 +83,11 @@ object Huffman {
   }
 
   def codificacionRapida(arbol: Nodo)(texto: List[Char]) : List[Int] = {
-    if(texto.length > 0){
-      if(obtenerCaracteres(arbol).head == texto.head)
-        List(0) ++ codificacionRapida(arbol)(texto.tail)
-      else
-        List(1) ++ codificacionRapida(arbol)(texto.tail)
-    }
-    else null
+    val tabla = convertirArbolTabla(arbol)
+    var bits: List[Int] = List()
+    for(caracter <- texto)
+      bits = bits ++ codificarConTabla(tabla)(caracter)
+
+    bits
   }
 }
