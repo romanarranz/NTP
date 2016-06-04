@@ -51,6 +51,14 @@ En esta práctica trabajaremos con clases de Scala y clases derivadas de estas. 
 > - Se ha desarrollado usando el lenguaje de programación Scala
 > - El IDE utilizado es Intellij IDEA 16.1 Community Edition. Aunque también se podría haber desarrollado con cualquier editor de texto.
 
+#### Práctica 5: Códigos Huffman
+Se ha realizado una implementación usando Scala como lenguaje de programción de los algoritmos de compresión que se usan en la codificación Huffman.
+
+Consiste en representar cada símbolo usando un prefijo que represente los caracteres más comunes usando las cadenas de bits más cortas y al contrario. Para ello se tiene una correspondencia de carácter, frecuencia y código de representación.
+
+> **Consideraciones**
+> 
+> - El IDE utilizado es Intellij IDEA 16.1 Community Edition. Aunque también se podría haber desarrollado con cualquier editor de texto.
 
 Índice de Seminarios
 -------------
